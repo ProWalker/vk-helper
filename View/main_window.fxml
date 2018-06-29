@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+
+    <MenuBar prefWidth="800">
+        <Menu mnemonicParsing="false" text="Файл">
+            <MenuItem mnemonicParsing="false" text="Close" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Настройки">
+            <MenuItem mnemonicParsing="false" text="Delete" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Помощь">
+            <MenuItem mnemonicParsing="false" text="About" />
+        </Menu>
+    </MenuBar>
+    <Label styleClass="accountsLabel" layoutX="29.0" layoutY="46.0" text="Список аккаунтов для рассылки" />
+    <ListView fx:id="sourceAccs" layoutX="14.0" layoutY="75.0" prefHeight="271.0" prefWidth="206.0" />
+    <Button fx:id="uploadSourceAccs" layoutX="98.0" layoutY="357.0" mnemonicParsing="false" onAction="#uploadAccountsHandler" text="Загрузить из файла" />
+    <Label styleClass="accountsLabel" layoutX="265.0" layoutY="46.0" text="Список целевых аккаунтов" />
+    <ListView fx:id="destinationAccs" layoutX="236.0" layoutY="75.0" prefHeight="271.0" prefWidth="206.0" />
+    <Button fx:id="uploadDestinationAccs" layoutX="320.0" layoutY="357.0" mnemonicParsing="false" onAction="#uploadAccountsHandler" text="Загрузить из файла" />
+    <TextArea fx:id="messageArea" layoutX="457.0" layoutY="75.0" prefHeight="271.0" prefWidth="327.0" />
+    <Label layoutX="573.0" layoutY="46.0" text="Текст сообщения" />
+    <Button fx:id="uploadImage" layoutX="636.0" layoutY="357.0" mnemonicParsing="false" text="Загрузить изображение" />
+    <Label fx:id="log" layoutX="367.0" layoutY="449.0" text="Лог выполнения" />
+    <Button fx:id="goButton" layoutX="751.0" layoutY="445.0" mnemonicParsing="false" text="Go" />
+    <Label fx:id="errorLabel" layoutX="15.0" layoutY="417.0" prefHeight="17.0" prefWidth="738.0" text="Label" />
+</Pane>

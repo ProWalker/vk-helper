@@ -1,0 +1,38 @@
+.root {
+  /*-fx-background-color: #CCFF99;*/
+}
+
+ListView, TextArea {
+  -fx-border-color: #999999;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-border-width: 2px;
+}
+
+Button {
+  -fx-background-color: #999999;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+  -fx-font-family: Arial;
+  -fx-font-weight: bold;
+  -fx-text-fill: #FFFFFF;
+}
+
+Button:hover {
+  -fx-background-color: #777777;
+}
+
+#goButton {
+  -fx-pref-width: 71px;
+  -fx-pref-height: 34px;
+  -fx-background-color: #337AB7;
+}
+
+.accountsLabel {
+  -fx-background-color: #777777;
+  -fx-font-family: Arial;
+  -fx-font-weight: bold;
+  -fx-padding: 5px;
+  -fx-text-fill: #FFFFFF;
+  -fx-background-radius: 2px;
+}
