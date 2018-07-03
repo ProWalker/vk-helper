@@ -1,5 +1,7 @@
 package Model;
 
+import java.io.File;
+
 public class ModelDestinationAccounts extends AbstractModel {
 
     public ModelDestinationAccounts() {
@@ -21,5 +23,9 @@ public class ModelDestinationAccounts extends AbstractModel {
         } else {
             throw new IllegalArgumentException("Неверный формат аккаунта!");
         }
+    }
+
+    public void uploadDestinationAccounts(File accountsFile) {
+        super.uploadAccounts(accountsFile);
     }
 }

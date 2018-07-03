@@ -47,4 +47,7 @@ public class ModelSourceAccounts extends AbstractModel {
         return accountsMap;
     }
 
+    public void uploadSourceAccounts(File accountsFile) {
+        super.uploadAccounts(accountsFile);
+    }
 }

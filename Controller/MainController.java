@@ -13,6 +13,8 @@ import javafx.stage.FileChooser;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class MainController extends AbstractController implements PropertyChangeListener {
@@ -47,17 +49,27 @@ public class MainController extends AbstractController implements PropertyChange
 
     }
 
-    @FXML
-    public void uploadAccountsHandler(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                new FileChooser.ExtensionFilter("All Files", "*.*"));
-        File sourceAccountsFile = fileChooser.showOpenDialog(super.getStage());
+    private void setModelProperty(String methodName, Object newValue) {
         for (int i = 0; i < registeredModels.size(); i++) {
-            registeredModels.get(i).uploadAccounts(sourceAccountsFile);
+            try {
+                Method method = registeredModels.get(i).getClass().getMethod(methodName, newValue.getClass());
+                method.invoke(registeredModels.get(i), newValue);
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                //e.printStackTrace();
+            }
         }
+    }
+
+    @FXML
+    public void uploadSourceAccountsHandler(ActionEvent actionEvent) {
+        File sourceAccountFile = getFileChooser().showOpenDialog(super.getStage());
+        setModelProperty("uploadSourceAccounts", sourceAccountFile);
+    }
+
+    @FXML
+    public void uploadDestinationAccountsHandler(ActionEvent actionEvent) {
+        File destinationAccountFile = getFileChooser().showOpenDialog(super.getStage());
+        setModelProperty("uploadDestinationAccounts", destinationAccountFile);
     }
 
     public void addModel(AbstractModel abstractModel) {
@@ -68,6 +80,15 @@ public class MainController extends AbstractController implements PropertyChange
     public void removeModel(AbstractModel abstractModel) {
         registeredModels.remove(abstractModel);
         abstractModel.removePropertyChangeListener(this);
+    }
+
+    public FileChooser getFileChooser() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        return fileChooser;
     }
 
     @Override
